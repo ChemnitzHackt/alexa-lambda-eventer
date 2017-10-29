@@ -1,0 +1,264 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "Dialog",
+      "samples": [
+        "was geht ab",
+        "was läuft",
+        "läuft",
+        "geht",
+        "Was geht",
+        "Was geht heute",
+        "abgeht",
+        "was geht ab im {place}",
+        "was läuft im {place}"
+      ],
+      "slots": [
+        {
+          "name": "category",
+          "type": "CATEGORY",
+          "samples": [
+            "Auf {category}",
+            "{category} natürlich",
+            "{category}"
+          ]
+        },
+        {
+          "name": "place",
+          "type": "AMAZON.DE_FIRST_NAME",
+          "samples": []
+        },
+        {
+          "name": "title",
+          "type": "AMAZON.DE_FIRST_NAME",
+          "samples": []
+        },
+        {
+          "name": "date",
+          "type": "AMAZON.DATE",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "Duration",
+      "samples": [
+        "welche {category} in den nächsten {timeslot} beginnen",
+        "was in den nächsten {timeslot} in {place} los ist",
+        "was in den nächsten {timeslot} in {place} abgeht",
+        "welche {category} in den nächsten {timeslot} im {place} beginnen"
+      ],
+      "slots": [
+        {
+          "name": "timeslot",
+          "type": "AMAZON.DURATION",
+          "samples": []
+        },
+        {
+          "name": "category",
+          "type": "CATEGORY",
+          "samples": []
+        },
+        {
+          "name": "place",
+          "type": "AMAZON.DE_FIRST_NAME",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "Insult",
+      "samples": [
+        "es möge mich beleidigen",
+        "beleidige mich",
+        "beleidigungen"
+      ],
+      "slots": []
+    },
+    {
+      "name": "List",
+      "samples": [
+        "heute",
+        "Events",
+        "Liste",
+        "Veranstaltungen",
+        "Veranstaltungen für {day}",
+        "Veranstaltungen am {day}",
+        "Events am {day}",
+        "Events für {day}"
+      ],
+      "slots": [
+        {
+          "name": "day",
+          "type": "AMAZON.DATE",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "Location",
+      "samples": [
+        "was im {place} abgeht",
+        "was in {place} abgeht",
+        "was im {place} los ist",
+        "was in {place} los ist",
+        "was im {place} läuft",
+        "was im {place} am {day} läuft",
+        "was im {place} am {day} los ist",
+        "was im {place} am {day} abgeht"
+      ],
+      "slots": [
+        {
+          "name": "place",
+          "type": "AMAZON.DE_FIRST_NAME",
+          "samples": []
+        },
+        {
+          "name": "day",
+          "type": "AMAZON.DATE",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "SearchName",
+      "samples": [
+        "Was ist {name}",
+        "Infos über {name}",
+        "Infos zu {name}",
+        "Informationen zu {name}",
+        "Informationen über {name}",
+        "Details zu {name}",
+        "Details zum {name}",
+        "Informationen zum {name}"
+      ],
+      "slots": [
+        {
+          "name": "name",
+          "type": "AMAZON.DE_CITY",
+          "samples": []
+        }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "CATEGORY",
+      "values": [
+        {
+          "id": "movie",
+          "name": {
+            "value": "movie",
+            "synonyms": [
+              "Film",
+              "Kino",
+              "Filme"
+            ]
+          }
+        },
+        {
+          "id": "sport",
+          "name": {
+            "value": "sport",
+            "synonyms": [
+              "Fußball",
+              "Football",
+              "Tennis",
+              "Sport"
+            ]
+          }
+        },
+        {
+          "id": "meetup",
+          "name": {
+            "value": "meetup",
+            "synonyms": [
+              "Hackathon",
+              "Nerdshit",
+              "Meetup",
+              "Vortrag",
+              "Vorträge"
+            ]
+          }
+        },
+        {
+          "id": "culture",
+          "name": {
+            "value": "culture",
+            "synonyms": [
+              "Kultur",
+              "Theater"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Elicit.Intent-Dialog.IntentSlot-category",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Worauf hast du Bock?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "Dialog",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "category",
+            "type": "CATEGORY",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-Dialog.IntentSlot-category"
+            }
+          },
+          {
+            "name": "place",
+            "type": "AMAZON.DE_FIRST_NAME",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "title",
+            "type": "AMAZON.DE_FIRST_NAME",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "date",
+            "type": "AMAZON.DATE",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          }
+        ]
+      }
+    ]
+  }
+}
